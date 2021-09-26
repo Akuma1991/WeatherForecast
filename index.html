@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body id="body">
 
 
     <header class=" container-fluid rounded-3">
@@ -99,6 +99,22 @@
          
         </div>
     </section>
+
+
+
+<div class="offcanvas offcanvas-bottom d-none  m-auto" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header alert alert-danger">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Weather Forecast Alert</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" id="closeBtn"></button>
+  </div>
+  <div class="offcanvas-body small">
+    <p class=" fs-3 alert alert-warning text-center">
+        Please make sure you have inserted the city name right 
+        <i class="fas fa-exclamation-triangle"></i>
+        <i class="fas fa-exclamation-triangle"></i>
+    </p>
+  </div>
+</div>
 
 
 

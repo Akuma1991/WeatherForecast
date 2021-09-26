@@ -6,29 +6,33 @@ async function getCurruntWeather(q = 'damietta') {
     let firstHeader = document.getElementById('firstHeader');
     let firstFooter = document.getElementById('firstFooter');
     let searchCity = document.getElementById('searchCity');
+    let offcanvasBottom = document.getElementById('offcanvas');
+    let closeBtn = document.getElementById('closeBtn');
+
 
     let curruntWeather = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=f123d6597efc4ae787c193756212109&q=${q}&days=3`);
+    console.log(curruntWeather.ok);
+    if (curruntWeather.ok == true) {
+        curruntWeather = await curruntWeather.json();
 
-    curruntWeather = await curruntWeather.json();
+        console.log(curruntWeather);
+        // console.log(curruntWeather);
 
-    console.log(curruntWeather);
-    // console.log(curruntWeather);
+        secondDate(curruntWeather.forecast.forecastday[1])
+        thirdDate(curruntWeather.forecast.forecastday[2])
 
-    secondDate(curruntWeather.forecast.forecastday[1])
-    thirdDate(curruntWeather.forecast.forecastday[2])
-
-    let dateObj = new Date()
-    let date = getDate(dateObj);
-
-
-    let windText = editConditionText(curruntWeather.current.wind_degree);
-    console.log(curruntWeather.current.wind_degree);
+        let dateObj = new Date()
+        let date = getDate(dateObj);
 
 
-    firstHeader.innerHTML = `<span class = "d-block fw-bold text-white fs-5">${date[0]}</span>
+        let windText = editConditionText(curruntWeather.current.wind_degree);
+        console.log(curruntWeather.current.wind_degree);
+
+
+        firstHeader.innerHTML = `<span class = "d-block fw-bold text-white fs-5">${date[0]}</span>
     <span class ="d-block fw-bold text-white-50 fs-5">${date[1]} ${date[2]}</span>`;
 
-    firstBody.innerHTML = `
+        firstBody.innerHTML = `
     <h5 class="mb-4">${curruntWeather.location.name}</h5>
     <span class="position-absolute top-0 start-50 translate-middle p-2 bg-dark border border-light rounded-circle">
     <img src = 'https:${curruntWeather.current.condition.icon}' />               
@@ -38,20 +42,25 @@ async function getCurruntWeather(q = 'damietta') {
         <h5 class="text-info fw-bold">${curruntWeather.current.condition.text}</h5>
        `;
 
-    firstFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${curruntWeather.current.precip_in}% </span>
+        firstFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${curruntWeather.current.precip_in}% </span>
     <span><i class="fas fa-wind text-warning"></i>  ${curruntWeather.current.wind_kph}km/h </span>
     <span><i class="far fa-compass text-success"></i>  ${windText}</span>`;
+        offcanvasBottom.classList.replace('d-block', 'd-none');
+
+    }
+    else {
+
+        offcanvasBottom.classList.replace('d-none', 'd-block');
+    }
+
+    function closeAlert() {
+        offcanvasBottom.classList.replace('d-block', 'd-none');
+
+    }
+    closeBtn.addEventListener('click', () => {
+        closeAlert();
+    });
 }
-
-
-
-
-
-
-
-
-
-
 
 
 function secondDate(data) {
@@ -198,3 +207,6 @@ document.addEventListener('keyup', (e) => {
 function clrearSearch() {
     searchCity.value = '';
 }
+
+
+

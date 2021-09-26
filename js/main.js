@@ -6,8 +6,7 @@ async function getCurruntWeather(q = 'damietta') {
     let firstHeader = document.getElementById('firstHeader');
     let firstFooter = document.getElementById('firstFooter');
     let searchCity = document.getElementById('searchCity');
-    let offcanvasBottom = document.getElementById('offcanvas');
-    let closeBtn = document.getElementById('closeBtn');
+    let alertInput = document.getElementById('alertInput');
 
 
     let curruntWeather = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=f123d6597efc4ae787c193756212109&q=${q}&days=3`);
@@ -16,7 +15,6 @@ async function getCurruntWeather(q = 'damietta') {
         curruntWeather = await curruntWeather.json();
 
         console.log(curruntWeather);
-        // console.log(curruntWeather);
 
         secondDate(curruntWeather.forecast.forecastday[1])
         thirdDate(curruntWeather.forecast.forecastday[2])
@@ -45,21 +43,19 @@ async function getCurruntWeather(q = 'damietta') {
         firstFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${curruntWeather.current.precip_in}% </span>
     <span><i class="fas fa-wind text-warning"></i>  ${curruntWeather.current.wind_kph}km/h </span>
     <span><i class="far fa-compass text-success"></i>  ${windText}</span>`;
-        offcanvasBottom.classList.replace('d-block', 'd-none');
+
+    alertInput.classList.replace('d-block', 'd-none');
 
     }
     else {
+        curruntWeather = await curruntWeather.json();
+        
+        alertInput.innerHTML = `<h6 class="alert alert-warning">${curruntWeather.error.message}</h6>`;
 
-        offcanvasBottom.classList.replace('d-none', 'd-block');
+        alertInput.classList.replace('d-none', 'd-block');
     }
 
-    function closeAlert() {
-        offcanvasBottom.classList.replace('d-block', 'd-none');
-
-    }
-    closeBtn.addEventListener('click', () => {
-        closeAlert();
-    });
+  
 }
 
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+    <header class=" container-fluid rounded-3">
+        <nav class="navbar navbar-expand-lg navbar-dark  shadow-lg ">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bolder fs-4" href="#">WeatherForecast</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto m-lg-0 ms-lg-auto mb-2 mb-lg-0  w-50 d-flex justify-content-evenly text-center">
+                        <li class="nav-item">
+                            <a class="nav-link active text-warning fw-bold" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold" href="#">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold" href="#">Live Cameras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold" href="#">Photos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold" href="#">Contact</a>
+                        </li>
+
+
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <section class="cardSection container">
+        <div class="d-flex mb-5">
+            <input class="form-control me-2 py-2" type="search" placeholder="Search" aria-label="Search"
+                id="searchCity">
+            <button class="btn btn-outline-warning fw-bold" type="submit">Search</button>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+            <div class="col">
+                <div class="card h-100 shadow-lg first position-relative" id="first">
+
+                    <div class="card-header d-sm-flex justify-content-sm-between" id="firstHeader">
+                    </div>
+                    <div class="card-body" id="firstBody">
+
+                    </div>
+                    <div class="card-footer d-flex justify-content-between" id="firstFooter">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-lg second position-relative" id="second">
+                    <div class="card-header d-sm-flex justify-content-sm-between" id="secondHeader">
+                    </div>
+                    <div class="card-body" id="secondBody">
+                        
+                    </div>
+                    <div class="card-footer d-flex justify-content-between" id="secondFooter">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-lg third position-relative" id="third">
+                    <div class="card-header d-sm-flex justify-content-sm-between" id="thirdHeader">
+                    </div>
+                    <div class="card-body" id="thirdBody">
+                        
+                    </div>
+                    <div class="card-footer d-flex justify-content-between" id="thirdFooter">
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+    </section>
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -10,8 +10,11 @@ async function getCurruntWeather(q = 'damietta') {
 
 
     let curruntWeather = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=f123d6597efc4ae787c193756212109&q=${q}&days=3`);
+
+    console.log(curruntWeather);
     console.log(curruntWeather.ok);
     if (curruntWeather.ok == true) {
+
         curruntWeather = await curruntWeather.json();
 
         console.log(curruntWeather);
@@ -33,29 +36,34 @@ async function getCurruntWeather(q = 'damietta') {
         firstBody.innerHTML = `
     <h5 class="mb-4">${curruntWeather.location.name}</h5>
     <span class="position-absolute top-0 start-50 translate-middle p-2 bg-dark border border-light rounded-circle">
-    <img src = 'https:${curruntWeather.current.condition.icon}' />               
+    <img src = 'https:${curruntWeather.current.condition.icon}'  />               
     </span>
     
         <h1 class="mb-4 temp fw-bold text-danger" >${curruntWeather.current.temp_c}&#8451;</h1>
         <h5 class="text-info fw-bold">${curruntWeather.current.condition.text}</h5>
        `;
 
-        firstFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${curruntWeather.current.precip_in}% </span>
+        firstFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${curruntWeather.forecast.forecastday[0].day.daily_chance_of_rain}% </span>
     <span><i class="fas fa-wind text-warning"></i>  ${curruntWeather.current.wind_kph}km/h </span>
     <span><i class="far fa-compass text-success"></i>  ${windText}</span>`;
 
-    alertInput.classList.replace('d-block', 'd-none');
+        alertInput.classList.replace('d-block', 'd-none');
 
     }
+
     else {
         curruntWeather = await curruntWeather.json();
-        
-        alertInput.innerHTML = `<h6 class="alert alert-warning">${curruntWeather.error.message}</h6>`;
+
+        alertInput.innerHTML = `<h6 class="alert alert-warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        ${curruntWeather.error.message}</h6>`;
 
         alertInput.classList.replace('d-none', 'd-block');
+        console.clear();
+
     }
 
-  
+
 }
 
 
@@ -86,7 +94,7 @@ function secondDate(data) {
         <h5 class="text-info fw-bold">${data.day.condition.text}</h5>
        `;
 
-    secondFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${data.day.totalprecip_in}% </span>
+    secondFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${data.day.daily_chance_of_rain}% </span>
     <span><i class="fas fa-wind text-secondary"></i>  ${data.day.maxwind_kph}km/h </span>
    `;
 
@@ -117,7 +125,7 @@ function thirdDate(data) {
             <h5 class="text-info fw-bold">${data.day.condition.text}</h5>
            `;
 
-    thirdFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${data.day.totalprecip_in}% </span>
+    thirdFooter.innerHTML = `<span><i class="fas fa-cloud-showers-heavy text-primary"></i>  ${data.day.daily_chance_of_rain}% </span>
         <span><i class="fas fa-wind text-warning"></i>  ${data.day.maxwind_kph}km/h </span>
        `;
 
@@ -197,6 +205,10 @@ document.addEventListener('keyup', (e) => {
         console.log(searchCity.value);
         console.log(searchCity.value.length);
         getCurruntWeather(searchCity.value);
+    }
+    if (searchCity.value.length == 0) {
+        alertInput.classList.replace('d-block', 'd-none');
+
     }
 });
 
